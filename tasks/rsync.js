@@ -19,11 +19,9 @@ module.exports = function (grunt) {
       grunt.fail.warn('There are no files to transfer.');
     }
     args.push(src.join(' '));
-
-    args.push( "-e 'ssh -p " + options.port + "'" );
     
     // destination to copy
-    args.push((options.user === '' ? '' :  options.user + '@') + options.host + ':' + options.remoteBase + '/' + target); // TODO: normalize
+    args.push((options.user === '' ? '' :  options.user + '@') + options.host + ':' + options.port + options.remoteBase + '/' + target); // TODO: normalize
     
     if(options.deleteAfter && !options.dry){
       args.push('&& rm -rf ' + src.join(' '));
