@@ -20,9 +20,10 @@ module.exports = function (grunt) {
     }
     args.push(src.join(' '));
 
+    args.push( "-e 'ssh -p " + options.port + "'" );
+    
     // destination to copy
     args.push((options.user === '' ? '' :  options.user + '@') + options.host + ':' + options.remoteBase + '/' + target); // TODO: normalize
-    args.push( "--rsh='ssh -p" + options.port + "'" );
     
     if(options.deleteAfter && !options.dry){
       args.push('&& rm -rf ' + src.join(' '));
