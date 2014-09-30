@@ -22,6 +22,7 @@ module.exports = function (grunt) {
 
     // destination to copy
     args.push((options.user === '' ? '' :  options.user + '@') + options.host + ':' + options.remoteBase + '/' + target); // TODO: normalize
+
     if(options.deleteAfter && !options.dry){
       args.push('&& rm -rf ' + src.join(' '));
     }
@@ -66,6 +67,7 @@ module.exports = function (grunt) {
         // options
         options.dry = grunt.option('no-write'),
         options.host = options.host || 'localhost',
+        options.port = options.port || 22,
         options.user = options.user || '',
 
         // TODO system username or nothing?
